@@ -29,10 +29,10 @@ public class Celula implements Imprimivel{
 		return nuvem;
 	}
 	@Override
-	public void imprimir(){
+	public String imprimir(){
 		if(tiro)
-			System.out.print(getConteudo());
+			return getConteudo();
 		else
-			System.out.print(getNuvem());
+			return getNuvem();
 	}
 }

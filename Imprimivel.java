@@ -1,3 +1,4 @@
 public interface Imprimivel {
-	void imprimir();
+	String imprimir();
+	String imprimir(Celula celula);
 }

@@ -4,20 +4,24 @@ public class BatalhaNaval implements Imprimivel{
 	private boolean fimDeJogo;
 	
 	public BatalhaNaval(int tamanho){
-	
+		tabuleiro1=new Tabuleiro(tamanho);
+		tabuleiro2=new Tabuleiro(tamanho);
+		fimDeJogo=false;
 	}
 	
 	public void darTiro(){
-	
-	}
-	
-	public boolean checaFimDeJogo(){
 		
 	}
 	
-	@Override
-	public void imprimir(){
+	public boolean checaFimDeJogo(){
+		if(fimDeJogo)
+			return true;
+		return false;
+	}
 	
+	@Override
+	public String imprimir(Celula celula){
+		return "|"+celula.imprimir()+"|";
 	}
 	
 }

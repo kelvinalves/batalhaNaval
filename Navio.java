@@ -36,4 +36,10 @@ public class Navio {
 				tabuleiro.getCelula(linha,coluna+i).setConteudo(" N ");		
 	}
 	
+	public boolean checaCelulaOcupada(Celula celula){
+		for(int i=0;i<celulasOcupadas.length;i++)
+			if(celulasOcupadas[i]==celula)
+				return true;
+		return false; 
+	}
 }
