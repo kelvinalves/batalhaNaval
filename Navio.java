@@ -10,7 +10,7 @@ public class Navio {
 	public void decrementaCelulasAtivas(){
 		celulasAtivas--;
 	}
-	
+	//talvez deixar esse metodo private seja mais interessante
 	public void inicializaNavio(String tipoNavio, int numeroCeluasOcupadas) {
 		this.tipoNavio=tipoNavio;
 		celulasOcupadas=new Celula[numeroCeluasOcupadas];
@@ -27,9 +27,13 @@ public class Navio {
 		return tipoNavio;
 	}
 	
-	/*public void posicionaNavio(int linha, int coluna, char orientacao){
-		
-	}*/
-	
+	public void posicionaNavio(int linha, int coluna, char orientacao, Tabuleiro tabuleiro){
+		if(orientacao=="V")
+			for(int i=0;i<celulasAtivas;i++)
+				tabuleiro.getCelula(linha+i,coluna).setConteudo(" N ");
+		else 
+			for(int i=0;i<celulasAtivas;i++)
+				tabuleiro.getCelula(linha,coluna+i).setConteudo(" N ");		
+	}
 	
 }
