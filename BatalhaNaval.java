@@ -17,14 +17,14 @@ public class BatalhaNaval implements Imprimivel{
 		if(tabuleiro==1){
 			Celula celulaAux=tabuleiro1.getCelula(linha,coluna);
 			celulaAux.setTiro();
-			if(celulaAux.getConteudo().equals(" X "){
+			if(celulaAux.getConteudo().equals(" X ")){
 				tabuleiro1.atiraNoNavio(celulaAux);
 			}
 		}
 		else {
 			Celula celulaAux=tabuleiro2.getCelula(linha,coluna);
 			celulaAux.setTiro();
-			if(celulaAux.getConteudo().equals(" X "){
+			if(celulaAux.getConteudo().equals(" X ")){
 				tabuleiro1.atiraNoNavio(celulaAux);
 			}
 		}
@@ -52,26 +52,36 @@ public class BatalhaNaval implements Imprimivel{
 		marcar nossos tiros e o que ja afundamos
 	*/
 	@Override
-	public String imprimir(){
-		for(int i=0;i<tabuleiro1.length;i++){
-			for(int j=0;j<tabuleiro1.length;j++){
+	public void imprimir(){
+		for(int i=0;i<tabuleiro1.tamanhoTabuleiro();i++){
+			for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
+				System.out.print("|---");
+			System.out.println("|");
+			for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++){
 				System.out.print("|");
 				tabuleiro1.getCelula(i,j).imprimir();
-				System.out.print("|");
 			}
-			System.out.println();
-		}	
+			System.out.println("|");
+		}
+		for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
+				System.out.print("|---");
+			System.out.println("|");
 	}
 	@Override
-	public String imprimirAuxiliar(){
-		for(int i=0;i<tabuleiro1.length;i++){
-			for(int j=0;j<tabuleiro1.length;j++){
+	public void imprimirAuxiliar(){
+		for(int i=0;i<tabuleiro2.tamanhoTabuleiro();i++){
+			for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
+				System.out.print("|---");
+			System.out.println("|");
+			for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++){
 				System.out.print("|");
-				tabuleiro1.getCelula(i,j).imprimirAuxiliar();
-				System.out.print("|");
+				tabuleiro2.getCelula(i,j).imprimirAuxiliar();
 			}
-			System.out.println();
-		}	
+			System.out.println("|");
+		}
+		for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++)
+				System.out.print("|---");
+			System.out.println("|");	
 	}
 	
 }

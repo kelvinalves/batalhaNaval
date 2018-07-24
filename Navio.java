@@ -38,16 +38,16 @@ public class Navio {
 		(na matriz sera 0,0) e colocar essa celula no vetor de celulas ocupadas pelo 
 		navio. Depois o metodo vai repetir isso mais uma vez, agora para a celula 1,2.
 	*/
-	public void posicionaNavio(int linha, int coluna, char orientacao, Tabuleiro tabuleiro){
-		if(orientacao=="V")
+	public void posicionaNavio(int linha, int coluna, char orientacao, Celula[][] tabuleiro){
+		if(orientacao=='V')
 			for(int i=0;i<celulasAtivas;i++){
-				Celula celulaAux=tabuleiro.getCelula(linha+i-1,coluna-1);
+				Celula celulaAux=tabuleiro[linha+i-1][coluna-1];
 				celulaAux.setConteudo(" N ");
 				celulasOcupadas[i]=celulaAux;
 			}
 		else 
 			for(int i=0;i<celulasAtivas;i++){
-				Celula celulaAux=tabuleiro.getCelula(linha-1,coluna+i-1);
+				Celula celulaAux=tabuleiro[linha-1][coluna+i-1];
 				celulaAux.setConteudo(" N ");
 				celulasOcupadas[i]=celulaAux;
 			}		
@@ -55,7 +55,7 @@ public class Navio {
 	/*	Esse metodo vai ver se a celula passada como parametro pertence a esse navio 
 		aqui. Isso auxilia na hora de dar um tiro numa celula e ver qual navio acertamos
 	*/
-	public boolean checaCelulaOcupada(Celula celula){
+	public boolean checaCelulasOcupadas(Celula celula){
 		for(int i=0;i<celulasOcupadas.length;i++)
 			if(celulasOcupadas[i]==celula)
 				return true;

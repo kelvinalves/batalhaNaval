@@ -17,8 +17,8 @@ public class Tabuleiro {
 	/*	Esse metodo  apenas cria celulas e as põe na matriz
 	*/
 	public void inicializaCelulas(int tamanho){
-		for(int i=0;i<n;i++)
-			for(int j=0;j<n;j++)
+		for(int i=0;i<tamanho;i++)
+			for(int j=0;j<tamanho;j++)
 				tabuleiro[i][j]=new Celula();
 	}
 	/*	Esse metodo apenas cria os navios
@@ -26,11 +26,11 @@ public class Tabuleiro {
 	public void inicializaNavios(){
 		navios=new Navio[10];
 		int i=0;
-		for(i;i<4;i++)
-			navios[i]=new Submario();
-		for(i;i<7;i++)
+		for(i=0;i<4;i++)
+			navios[i]=new Submarino();
+		for(i=4;i<7;i++)
 			navios[i]=new ContraTorpedeiro();
-		for(i;i<9;i++)
+		for(i=7;i<9;i++)
 			navios[i]=new NavioTanque();
 		navios[i]=new PortaAviao();
 		naviosAtivos=10;
@@ -48,8 +48,8 @@ public class Tabuleiro {
 			System.out.println("Posicione um " + navios[i].getTipo());
 			linha=leitor.nextInt();
 			coluna=leitor.nextInt();
-			orientacao=leitor.nextChar();
-			navios[i].posicionaNavio(linha,coluna,posicao,tabuleiro);
+			orientacao=leitor.nextLine().charAt(0);
+			navios[i].posicionaNavio(linha,coluna,orientacao,tabuleiro);
 		}
 	}
 	/*	Metodo que pergunta se o navio passado como parametro foi afundado: se foi ele decrementa o 
@@ -65,10 +65,12 @@ public class Tabuleiro {
 		no vetor navios
 	*/
 	public Navio procuraAlvo(Celula celula){
-		for(int i=0;i<navios.length;i++){
-			if(navios[i].checaCelulasOcupadas())
-				return navios[i];		
+		int i;
+		for(i=0;i<navios.length;i++){
+			if(navios[i].checaCelulasOcupadas(celula))
+				break;
 		}
+		return navios[i];
 	}
 	/*	Aqui sabemos que a celula do parametro e de algum navio. Entao procuramos esse navio alvo, depois 
 		diminuimos o numero de celulas ativas dele, pois acertamos uma, e por ultimo checamos se ele afundou
@@ -90,6 +92,10 @@ public class Tabuleiro {
 	*/
 	public int getNaviosAtivos(){
 		return naviosAtivos;
+	}
+	
+	public int tamanhoTabuleiro(){
+		return tabuleiro.length;
 	}
 	
 }
