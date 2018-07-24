@@ -32,7 +32,9 @@ public class Celula implements Imprimivel{
 	public String getNuvem(){
 		return nuvem;
 	}
-	
+	/*	Ha dois metodos de impressao, pois devemos conseguir ver nosso tabuleiro e tambem
+		ter um tabuleiro suporte para ver onde ja atiramos pra nao dar tiro no mesmo lugar
+	*/
 	@Override
 	public void imprimir(){
 		System.out.print(getConteudo());

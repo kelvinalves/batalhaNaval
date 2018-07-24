@@ -1,3 +1,5 @@
+//lembrar de tirar comentarios na hora de apresentar
+
 public class Navio {
 	private String tipoNavio;
 	private Celula[] celulasOcupadas;
