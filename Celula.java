@@ -1,12 +1,16 @@
 public class Celula implements Imprimivel{
+	/*	O atributo nuvem ajuda na impressao: 
+	*/
 	private String nuvem="oOo";
 	private String conteudo;
 	private boolean tiro;
 	
 	public Celula(){
 		tiro=false;
+		setConteudo("~~~");
 	}
-	
+	/*	Aqui vamos ter agua (~~~) ou navio ( N ), ou ate mesmo x ( X ) que indica um navio afundado.
+	*/
 	public void setConteudo(String conteudo){
 		this.conteudo=conteudo;
 	}
@@ -28,11 +32,16 @@ public class Celula implements Imprimivel{
 	public String getNuvem(){
 		return nuvem;
 	}
+	
 	@Override
-	public String imprimir(){
+	public void imprimir(){
+		System.out.print(getConteudo());
+	}
+	@Override
+	public void imprimirAuxiliar(){
 		if(tiro)
-			return getConteudo();
+			System.out.print(getConteudo());
 		else
-			return getNuvem();
+			System.out.print(getNuvem());
 	}
 }
