@@ -14,6 +14,10 @@ public class Tabuleiro {
 		inicializaCelulas(tamanho);
 		inicializaNavios();
 	}
+	
+	public Tabuleiro (int tamanho){
+		this(10);
+	}
 	/*	Esse metodo  apenas cria celulas e as põe na matriz
 	*/
 	public void inicializaCelulas(int tamanho){
