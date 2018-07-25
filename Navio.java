@@ -6,7 +6,7 @@ public class Navio {
 	private int celulasAtivas;
 	
 	public Navio(String tipoNavio, int numeroCeluasOcupadas) {
-		inicializaNavio(tipoNavio,numeroCeluasOcupadas);
+		inicializaNavio(tipoNavio,numeroCelulasOcupadas);
 	}
 	//metodo para diminuir o numero de celulas que ainda podem receber tiro
 	public void decrementaCelulasAtivas(){
@@ -38,19 +38,37 @@ public class Navio {
 		(na matriz sera 0,0) e colocar essa celula no vetor de celulas ocupadas pelo 
 		navio. Depois o metodo vai repetir isso mais uma vez, agora para a celula 1,2.
 	*/
-	public void posicionaNavio(int linha, int coluna, char orientacao, Celula[][] tabuleiro){
-		if(orientacao=='V')
+	public void posicionaNavio(int linha, int coluna, char orientacao, Celula[][] tabuleiro) throws Exception{
+		if(orientacao=='V'){
+			for(int i=0;i<celulasAtivas;i++){
+				Celula celulaAux=tabuleiro[linha+i-1][coluna-1];
+				if (celulaAux.getConteudo().equals(" N "){
+					throw new Exception("Posicao ja esta ocupada!"); 				
+				}
+			}
+			
 			for(int i=0;i<celulasAtivas;i++){
 				Celula celulaAux=tabuleiro[linha+i-1][coluna-1];
 				celulaAux.setConteudo(" N ");
 				celulasOcupadas[i]=celulaAux;
 			}
-		else 
+		}
+
+		else{
+
+			for(int i=0;i<celulasAtivas;i++){
+				Celula celulaAux=tabuleiro[linha-1][coluna+i-1];
+				if (celulaAux.getConteudo().equals(" N "){
+					throw new Exception("Posicao ja esta ocupada!"); 				
+				}
+			}
+			
 			for(int i=0;i<celulasAtivas;i++){
 				Celula celulaAux=tabuleiro[linha-1][coluna+i-1];
 				celulaAux.setConteudo(" N ");
 				celulasOcupadas[i]=celulaAux;
 			}		
+		}
 	}
 	/*	Esse metodo vai ver se a celula passada como parametro pertence a esse navio 
 		aqui. Isso auxilia na hora de dar um tiro numa celula e ver qual navio acertamos
