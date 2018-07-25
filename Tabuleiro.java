@@ -9,13 +9,16 @@ public class Tabuleiro {
 		pois criar a matriz apenas cria uma matriz de nulls
 		O construtor tambem cria os navios 
 	*/
-	public Tabuleiro (int tamanho){
+	public Tabuleiro (int tamanho) throws Exception{
+		if (tamanho<8 || tamanho >15){
+			throw new Exception("Tamanho do tabuleiro deve ser de 8 até 15");
+		}
 		tabuleiro=new Celula[tamanho][tamanho];
 		inicializaCelulas(tamanho);
 		inicializaNavios();
 	}
 	
-	public Tabuleiro (int tamanho){
+	public Tabuleiro (){
 		this(10);
 	}
 	/*	Esse metodo  apenas cria celulas e as põe na matriz
