@@ -18,7 +18,7 @@ public class Tabuleiro {
 		inicializaNavios();
 	}
 	
-	public Tabuleiro (){
+	public Tabuleiro() throws Exception{
 		this(10);
 	}
 	/*	Esse metodo  apenas cria celulas e as põe na matriz
@@ -46,7 +46,7 @@ public class Tabuleiro {
 		dos navios. O metodo pede a posicao de cada navio do vetor de navios
 	*/
 	public void posicionaNavios(){
-		boolean continuaExcecao = true;
+		boolean continuaExcecao;
 
 			Scanner leitor=new Scanner(System.in);
 			System.out.println("Hora de posicionar os Navios: digite a linha, a coluna e a orientacao (H-horizotal e V-vertical)");
@@ -54,7 +54,7 @@ public class Tabuleiro {
 			int coluna;
 			char orientacao;
 			for(int i=0;i<navios.length;i++){
-
+				continuaExcecao=true;
 				while (continuaExcecao)
 
 				try{

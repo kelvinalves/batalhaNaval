@@ -5,7 +5,7 @@ public class Navio {
 	private Celula[] celulasOcupadas;
 	private int celulasAtivas;
 	
-	public Navio(String tipoNavio, int numeroCeluasOcupadas) {
+	public Navio(String tipoNavio, int numeroCelulasOcupadas) {
 		inicializaNavio(tipoNavio,numeroCelulasOcupadas);
 	}
 	//metodo para diminuir o numero de celulas que ainda podem receber tiro
@@ -42,7 +42,7 @@ public class Navio {
 		if(orientacao=='V'){
 			for(int i=0;i<celulasAtivas;i++){
 				Celula celulaAux=tabuleiro[linha+i-1][coluna-1];
-				if (celulaAux.getConteudo().equals(" N "){
+				if (celulaAux.getConteudo().equals(" N ")){
 					throw new Exception("Posicao ja esta ocupada!"); 				
 				}
 			}
@@ -58,7 +58,7 @@ public class Navio {
 
 			for(int i=0;i<celulasAtivas;i++){
 				Celula celulaAux=tabuleiro[linha-1][coluna+i-1];
-				if (celulaAux.getConteudo().equals(" N "){
+				if (celulaAux.getConteudo().equals(" N ")){
 					throw new Exception("Posicao ja esta ocupada!"); 				
 				}
 			}

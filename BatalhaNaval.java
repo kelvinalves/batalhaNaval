@@ -1,21 +1,39 @@
+import java.util.Scanner;
+
 public class BatalhaNaval implements Imprimivel{
 	private Tabuleiro tabuleiro1;
 	private Tabuleiro tabuleiro2;
 	private boolean fimDeJogo;
 	/*	Contrutor para criar os tabuleiros 
 	*/
-	public BatalhaNaval(int tamanho){
-		tabuleiro1=new Tabuleiro(tamanho);
-		tabuleiro2=new Tabuleiro(tamanho);
-		fimDeJogo=false;
+	public BatalhaNaval() {
+		boolean continuaExcecao=true;
+		Scanner leitor = new Scanner(System.in);
+		while (continuaExcecao){
+			try{
+				System.out.print("Digite o tamanho do tabuleiro: ");
+				int tamanho = leitor.nextInt();
+				tabuleiro1=new Tabuleiro(tamanho);
+				tabuleiro2=new Tabuleiro(tamanho);
+				fimDeJogo=false;
+				continuaExcecao=false;
+			}
+		
+			catch (Exception e){
+				System.out.println(e.toString());
+			}
+		}
 	}
 	/*	Aqui o metodo pega a celula na qual queremos dar tiro e depois checa se acertamos
 		um navio, se acertamos precisamos ver em qual foi. No final checa se ja afundamos 
 		todo os navios.
 	*/
-	public void darTiro(int linha, int coluna,int tabuleiro){
+	public void darTiro(int linha, int coluna,int tabuleiro) throws Exception{
 		if(tabuleiro==1){
 			Celula celulaAux=tabuleiro1.getCelula(linha,coluna);
+			if (celulaAux.getTiro()){
+				throw new Exception("Ja foi dado tiro nessa celula!");
+			}
 			celulaAux.setTiro();
 			if(celulaAux.getConteudo().equals(" X ")){
 				tabuleiro1.atiraNoNavio(celulaAux);
@@ -23,6 +41,9 @@ public class BatalhaNaval implements Imprimivel{
 		}
 		else {
 			Celula celulaAux=tabuleiro2.getCelula(linha,coluna);
+			if (celulaAux.getTiro()){
+				throw new Exception("Ja foi dado tiro nessa celula!");
+			}
 			celulaAux.setTiro();
 			if(celulaAux.getConteudo().equals(" X ")){
 				tabuleiro1.atiraNoNavio(celulaAux);
