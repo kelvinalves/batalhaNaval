@@ -11,7 +11,7 @@ public class BatalhaNaval implements Imprimivel{
 		Scanner leitor = new Scanner(System.in);
 		while (continuaExcecao){
 			try{
-				System.out.print("Digite o tamanho do tabuleiro: ");
+				System.out.print("Digite o tamanho do tabuleiro (entre 8 e 15, inclusive): ");
 				int tamanho = leitor.nextInt();
 				tabuleiro1=new Tabuleiro(tamanho);
 				tabuleiro2=new Tabuleiro(tamanho);
@@ -20,7 +20,7 @@ public class BatalhaNaval implements Imprimivel{
 			}
 		
 			catch (Exception e){
-				System.out.println(e.toString());
+				System.out.println(e.getMessage());
 			}
 		}
 	}

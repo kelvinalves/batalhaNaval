@@ -11,7 +11,7 @@ public class Tabuleiro {
 	*/
 	public Tabuleiro (int tamanho) throws Exception{
 		if (tamanho<8 || tamanho >15){
-			throw new Exception("Tamanho do tabuleiro deve ser de 8 até 15");
+			throw new Exception("Tamanho do tabuleiro deve ser de 8 ate 15");
 		}
 		tabuleiro=new Celula[tamanho][tamanho];
 		inicializaCelulas(tamanho);
