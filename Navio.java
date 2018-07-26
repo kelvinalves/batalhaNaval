@@ -55,7 +55,6 @@ public class Navio {
 		}
 
 		else{
-
 			for(int i=0;i<celulasAtivas;i++){
 				Celula celulaAux=tabuleiro[linha-1][coluna+i-1];
 				if (celulaAux.getConteudo().equals(" N ")){

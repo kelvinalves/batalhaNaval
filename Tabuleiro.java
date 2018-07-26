@@ -11,7 +11,7 @@ public class Tabuleiro {
 	*/
 	public Tabuleiro (int tamanho) throws Exception{
 		if (tamanho<8 || tamanho >15){
-			throw new Exception("Tamanho do tabuleiro deve ser de 8 ate 15");
+			throw new Exception("\nTamanho do tabuleiro deve ser de 8 ate 15!\n");
 		}
 		tabuleiro=new Celula[tamanho][tamanho];
 		inicializaCelulas(tamanho);
@@ -61,7 +61,7 @@ public class Tabuleiro {
 					System.out.println("Posicione um " + navios[i].getTipo());
 					linha=leitor.nextInt();
 					coluna=leitor.nextInt();
-					orientacao=leitor.nextLine().charAt(0);
+					orientacao=leitor.next().charAt(0);
 					navios[i].posicionaNavio(linha,coluna,orientacao,tabuleiro);
 					continuaExcecao = false;
 				}

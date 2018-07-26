@@ -32,7 +32,7 @@ public class BatalhaNaval implements Imprimivel{
 		if(tabuleiro==1){
 			Celula celulaAux=tabuleiro1.getCelula(linha,coluna);
 			if (celulaAux.getTiro()){
-				throw new Exception("Ja foi dado tiro nessa celula!");
+				throw new Exception("\nJa foi dado tiro nessa celula!\n");
 			}
 			celulaAux.setTiro();
 			if(celulaAux.getConteudo().equals(" X ")){
@@ -72,6 +72,13 @@ public class BatalhaNaval implements Imprimivel{
 	/*	Tem dois metodos pra imprimir pois precisamos de um tabuleiro auxiliar para 
 		marcar nossos tiros e o que ja afundamos
 	*/
+	
+	public Tabuleiro getTabuleiro(int tabuleiro){
+		if(tabuleiro==1)
+			return tabuleiro1;
+		return tabuleiro2;
+	}
+	
 	@Override
 	public void imprimir(){
 		for(int i=0;i<tabuleiro1.tamanhoTabuleiro();i++){
@@ -91,7 +98,7 @@ public class BatalhaNaval implements Imprimivel{
 	@Override
 	public void imprimirAuxiliar(){
 		for(int i=0;i<tabuleiro2.tamanhoTabuleiro();i++){
-			for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
+			for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++)
 				System.out.print("|---");
 			System.out.println("|");
 			for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++){
