@@ -9,11 +9,11 @@ public class Principal {
 		Scanner leitor = new Scanner(System.in);
 		BatalhaNavalJogadores jogo = new BatalhaNavalJogadores();
 		
-		jogo.posicionaNaviosTabuleiros();
+		//jogo.posicionaNaviosTabuleiros();
 		
-		jogo.imprimir(2);
+		jogo.imprimir(1);
 		System.out.println();
-
+/*
 		while(continuaAtirando){   //Teste dos tiros
 		
 			try{
@@ -23,12 +23,13 @@ public class Principal {
 		
 				jogo.darTiro(linha,coluna,1);
 				continuaAtirando=false;
+				jogo.imprimir(2);
 			}
 
 			catch(Exception e){
 				System.out.println(e.getMessage());
 			}
 		}
-
+*/
 	}
 }
