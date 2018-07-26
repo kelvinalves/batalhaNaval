@@ -80,6 +80,19 @@ public class BatalhaNaval implements Imprimivel{
 	}
 	
 	@Override
+	public void imprimirAuxiliar(){
+		Tabuleiro tabuleiroAuxiliar=getTabuleiro(1);
+		for(int j=0;j<tabuleiroAuxiliar.tamanhoTabuleiro();j++)
+				System.out.print("|---");
+			System.out.println("|");
+	}
+	
+	@Override 
+	public void imprimir(){
+		
+	}
+	/*
+	@Override
 	public void imprimir(){
 		for(int i=0;i<tabuleiro1.tamanhoTabuleiro();i++){
 			for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
@@ -111,5 +124,5 @@ public class BatalhaNaval implements Imprimivel{
 				System.out.print("|---");
 			System.out.println("|");	
 	}
-	
+	*/
 }

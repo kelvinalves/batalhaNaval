@@ -7,10 +7,12 @@ public class Principal {
 		boolean continuaAtirando=true;
 
 		Scanner leitor = new Scanner(System.in);
-		BatalhaNaval jogo = new BatalhaNaval();
-		jogo.imprimir();
+		BatalhaNavalJogadores jogo = new BatalhaNavalJogadores();
+		
+		jogo.posicionaNaviosTabuleiros();
+		
+		jogo.imprimir(2);
 		System.out.println();
-		jogo.imprimirAuxiliar();
 
 		while(continuaAtirando){   //Teste dos tiros
 		
