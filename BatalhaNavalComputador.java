@@ -34,11 +34,17 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 	}
 	public void tipoTiro(Celula celulaAnterior){
 		if(celulaAnterior.getConteudo().equals(" X ")) {
-
+			darTiroInteligente();
 		}
 		else
 			darTiro(); 
 		
+	}
+	
+	public class darTiroInteligente(){
+		itens = new Object[4]; // as quatro posições da cruz
+		topo = -1;
+
 	}
 
 	@Override	
