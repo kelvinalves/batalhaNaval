@@ -65,15 +65,15 @@ public class BatalhaNaval implements Imprimivel{
 		if(tabuleiro==1)
 			tabuleiroAuxiliar=tabuleiro1;
 		else
-			tabuleiroAuxiliar=tabuleiro2;
-			Celula celulaAux=tabuleiroAuxiliar.getCelula(linha-1,coluna-1);
-			if (celulaAux.getTiro()){
-				throw new Exception("\nJa foi dado tiro nessa celula!\n");
-			}
-			celulaAux.setTiro();
-			if(celulaAux.getConteudo().equals(" X ")){
-				tabuleiroAuxiliar.atiraNoNavio(celulaAux);
-			}
+		tabuleiroAuxiliar=tabuleiro2;
+		Celula celulaAux=tabuleiroAuxiliar.getCelula(linha-1,coluna-1);
+		if (celulaAux.getTiro()){
+			throw new Exception("\nJa foi dado tiro nessa celula!\n");
+		}
+		celulaAux.setTiro();
+		if(celulaAux.getConteudo().equals(" X ")){
+			tabuleiroAuxiliar.atiraNoNavio(celulaAux);
+		}
 			/*
 		}
 		else {
