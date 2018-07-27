@@ -6,7 +6,7 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 	private Celula celulaAnterior = "~~~";
 	
 	public int aleatorioIndice(){
-		//instância um objeto da classe Random usando o construtor básico
+		//instância um objeto da classe Random usando o construtor básicoshdbvfhsdvcjhdvscjhvdscbdscb
 		Random gerador = new Random();
 
 		int tamanho = getTabuleiro(1).tamanhoTabuleiro;
