@@ -7,7 +7,7 @@ public class Principal {
 		boolean continuaAtirando=true;
 		
 		Scanner leitor = new Scanner(System.in);
-		BatalhaNaval jogo = new BatalhaNaval();
+		BatalhaNavalJogadores jogo = new BatalhaNavalJogadores();
 		
 		jogo.posicionaNaviosTabuleiros();
 		System.out.println("\t\t\t----------tabuleiro 1----------\n");
@@ -42,12 +42,11 @@ public class Principal {
 					linha = leitor.nextInt();
 					coluna = leitor.nextInt();
 		
-					jogo.darTiro(linha,coluna,1);
+					jogo.darTiro(1);
 					continuaAtirando=false;
-					jogo.imprimir();
-				}
-
-				catch(Exception e){
+					jogo.imprimir(1);
+					//jogo.imprimirAuxiliar();
+				} catch(Exception e) {
 					System.out.println(e.getMessage());
 				}
 			}

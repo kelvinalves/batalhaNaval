@@ -41,7 +41,7 @@ public class Navio {
     public void posicionaNavio(int linha, int coluna, char orientacao, Tabuleiro tabuleiro) throws Exception{
         int tamanho=tabuleiro.tamanhoTabuleiro();
 		if(orientacao=='V'){
-            if (linha+celulasOcupadas.length>tamanho || coluna>tamanho || linha>tamanho || linha<1 || coluna<1){
+            if (linha+celulasOcupadas.length-1>tamanho || coluna>tamanho || linha>tamanho || linha<1 || coluna<1){
                 throw new Exception ("Posicao fora do tabuleiro!");
             }
             for(int i=0;i<celulasAtivas;i++){
@@ -60,7 +60,7 @@ public class Navio {
         }
 
         else{
-            if (coluna+celulasOcupadas.length>tamanho || coluna>tamanho || linha>tabuleiro.tamanhoTabuleiro() || linha<1 || coluna<1){
+            if (coluna+celulasOcupadas.length-1>tamanho || coluna>tamanho || linha>tamanho || linha<1 || coluna<1){
                 throw new Exception ("Posicao fora do tabuleiro!");
             }
             for(int i=0;i<celulasAtivas;i++){

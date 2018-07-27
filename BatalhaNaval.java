@@ -62,23 +62,23 @@ public class BatalhaNaval implements Imprimivel{
     
     public void darTiro(int linha, int coluna,int tabuleiro) throws Exception{
         Tabuleiro tabuleiroAuxiliar;
-        if(tabuleiro==1)
-            tabuleiroAuxiliar=tabuleiro1;
-        else
-            tabuleiroAuxiliar=tabuleiro2;
+		if(tabuleiro==1)
+			tabuleiroAuxiliar=tabuleiro1;
+		else
+			tabuleiroAuxiliar=tabuleiro2;
 
         if (coluna>tabuleiroAuxiliar.tamanhoTabuleiro() || linha>tabuleiroAuxiliar.tamanhoTabuleiro() || linha<1 || coluna<1){
-                throw new Exception ("Tiro fora do tabuleiro!");
-            }
+			throw new Exception ("Tiro fora do tabuleiro!");
+		}
         Celula celulaAux=tabuleiroAuxiliar.getCelula(linha-1,coluna-1);
 
-         if (celulaAux.getTiro()){
-                throw new Exception("\nJa foi dado tiro nessa celula!\n");
-            }
-            celulaAux.setTiro();
-            if(celulaAux.getConteudo().equals(" X ")){
-                tabuleiroAuxiliar.atiraNoNavio(celulaAux);
-            }
+        if (celulaAux.getTiro()){
+			throw new Exception("\nJa foi dado tiro nessa celula!\n");
+		}
+		celulaAux.setTiro();
+		if(celulaAux.getConteudo().equals(" X ")){
+			tabuleiroAuxiliar.atiraNoNavio(celulaAux);
+		}
             /*
         }
         else {
@@ -120,7 +120,7 @@ public class BatalhaNaval implements Imprimivel{
             return tabuleiro1;
         return tabuleiro2;
     }
-    /*
+    
     @Override
     public void imprimirAuxiliar(){
         Tabuleiro tabuleiroAuxiliar=getTabuleiro(1);
@@ -134,40 +134,44 @@ public class BatalhaNaval implements Imprimivel{
         imprimirAuxiliar();
         System.out.print("  ");
         imprimirAuxiliar();
-    }*/
-
+    }
+	/*
+	*/
+	
+	/*
     @Override
     public void imprimir(){
-        for(int i=0;i<tabuleiro1.tamanhoTabuleiro();i++){
-            for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");
-            for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++){
-                System.out.print("|");
-                tabuleiro1.getCelula(i,j).imprimir();
-            }
-            System.out.println("|");
-        }
-        for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");
-    }
-    @Override
-    public void imprimirAuxiliar(){
         for(int i=0;i<tabuleiro2.tamanhoTabuleiro();i++){
             for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++)
                 System.out.print("|---");
             System.out.println("|");
             for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++){
                 System.out.print("|");
-                tabuleiro2.getCelula(i,j).imprimirAuxiliar();
+                tabuleiro1.getCelula(i,j).imprimir();
             }
             System.out.println("|");
         }
         for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++)
                 System.out.print("|---");
+            System.out.println("|");
+    }
+    @Override
+    public void imprimirAuxiliar(){
+        for(int i=0;i<tabuleiro1.tamanhoTabuleiro();i++){
+            for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
+                System.out.print("|---");
+            System.out.println("|");
+            for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++){
+                System.out.print("|");
+                tabuleiro1.getCelula(i,j).imprimirAuxiliar();
+            }
+            System.out.println("|");
+        }
+        for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
+                System.out.print("|---");
             System.out.println("|");    
     }
-
+	/*
+	*/
 }
 
