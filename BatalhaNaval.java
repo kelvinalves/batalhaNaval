@@ -28,6 +28,38 @@ public class BatalhaNaval implements Imprimivel{
 		um navio, se acertamos precisamos ver em qual foi. No final checa se ja afundamos 
 		todo os navios.
 	*/
+	
+	public void posicionaNaviosTabuleiros(){
+		posicionaNavios(tabuleiro1);
+		posicionaNavios(tabuleiro2);
+	}
+	
+	
+	public void posicionaNavios(Tabuleiro tabuleiro){
+		boolean continuaExcecao;
+		Scanner leitor=new Scanner(System.in);
+		System.out.println("Hora de posicionar os Navios: digite a linha, a coluna e a orientacao (H-horizotal e V-vertical)");
+		int linha;
+		int coluna;
+		char orientacao;
+		Navio[] naviosAuxiliar=tabuleiro.getNavios();
+
+		for(int i=0;i<naviosAuxiliar.length;i++){
+			continuaExcecao=true;
+			while (continuaExcecao)
+			try{
+				System.out.println("Posicione um " + naviosAuxiliar[i].getTipo());
+				linha=leitor.nextInt();
+				coluna=leitor.nextInt();
+				orientacao=leitor.next().charAt(0);
+				naviosAuxiliar[i].posicionaNavio(linha,coluna,orientacao,tabuleiro);
+				continuaExcecao = false;
+			} catch (Exception e) {
+				System.out.println(e.getMessage());	
+			}		
+		}
+	}	
+	
 	public void darTiro(int linha, int coluna,int tabuleiro) throws Exception{
 		Tabuleiro tabuleiroAuxiliar;
 		if(tabuleiro==1)
@@ -83,7 +115,7 @@ public class BatalhaNaval implements Imprimivel{
 			return tabuleiro1;
 		return tabuleiro2;
 	}
-	
+	/*
 	@Override
 	public void imprimirAuxiliar(){
 		Tabuleiro tabuleiroAuxiliar=getTabuleiro(1);
@@ -97,8 +129,8 @@ public class BatalhaNaval implements Imprimivel{
 		imprimirAuxiliar();
 		System.out.print("  ");
 		imprimirAuxiliar();
-	}
-	/*
+	}*/
+
 	@Override
 	public void imprimir(){
 		for(int i=0;i<tabuleiro1.tamanhoTabuleiro();i++){
@@ -131,5 +163,5 @@ public class BatalhaNaval implements Imprimivel{
 				System.out.print("|---");
 			System.out.println("|");	
 	}
-	*/
+
 }
