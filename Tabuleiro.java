@@ -67,7 +67,7 @@ public class Tabuleiro {
 				}
 
 				catch (Exception e){
-					System.out.println(e.toString());	
+					System.out.println(e.getMessage());	
 				}		
 			}
 	}

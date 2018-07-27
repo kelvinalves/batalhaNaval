@@ -29,15 +29,20 @@ public class BatalhaNaval implements Imprimivel{
 		todo os navios.
 	*/
 	public void darTiro(int linha, int coluna,int tabuleiro) throws Exception{
-		if(tabuleiro==1){
-			Celula celulaAux=tabuleiro1.getCelula(linha-1,coluna-1);
+		Tabuleiro tabuleiroAuxiliar;
+		if(tabuleiro==1)
+			tabuleiroAuxiliar=tabuleiro1;
+		else
+			tabuleiroAuxiliar=tabuleiro2;
+			Celula celulaAux=tabuleiroAuxiliar.getCelula(linha-1,coluna-1);
 			if (celulaAux.getTiro()){
 				throw new Exception("\nJa foi dado tiro nessa celula!\n");
 			}
 			celulaAux.setTiro();
 			if(celulaAux.getConteudo().equals(" X ")){
-				tabuleiro1.atiraNoNavio(celulaAux);
+				tabuleiroAuxiliar.atiraNoNavio(celulaAux);
 			}
+			/*
 		}
 		else {
 			Celula celulaAux=tabuleiro2.getCelula(linha-1,coluna-1);
@@ -48,7 +53,7 @@ public class BatalhaNaval implements Imprimivel{
 			if(celulaAux.getConteudo().equals(" X ")){
 				tabuleiro2.atiraNoNavio(celulaAux);
 			}
-		}
+		}*/
 		checaNumeroNavios(tabuleiro);
 	}
 	/*	Ve se ja afundamos todos os navios ou nao
