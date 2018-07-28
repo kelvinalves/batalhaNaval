@@ -4,11 +4,8 @@ public class BatalhaNaval implements Imprimivel{
     private Tabuleiro tabuleiro1;
     private Tabuleiro tabuleiro2;
     private boolean fimDeJogo;
-	/*
-	public static void jogar(){
-		System.out.prinln()
-	}*/
-    public BatalhaNaval() {
+
+    /*public BatalhaNaval() {
         boolean continuaExcecao=true;
         Scanner leitor = new Scanner(System.in);
         while (continuaExcecao){
@@ -25,7 +22,32 @@ public class BatalhaNaval implements Imprimivel{
                 System.out.println(e.getMessage());
             }
         }
-    }
+    }*/
+	
+	public void jogar(){
+		Scanner leitor=new Scanner(System.in);
+		boolean pedeTipoJogo=true;
+		while(pedeTipoJogo){
+			System.out.println("\n-----------------------------------------");
+			System.out.println("\tEscolha o tipo de jogo");
+			System.out.println("\tj - Jogador vs Jogador");
+			System.out.println("\tc - Jogador vs computador");
+			System.out.println("-----------------------------------------");
+			char tipoJogo=leitor.next().charAt(0);
+			if(tipoJogo=='j'){
+				BatalhaNavalJogadores jogoJogadores=new BatalhaNavalJogadores();
+				jogoJogadores.jogar();
+				pedeTipoJogo=false;
+			}/*
+			else if(tipoJogo='c'){
+				BatalhaNavalComputador jogoComputador=new BatalhaNavalComputador();
+				//jogoJogadores.jogar();
+				pedeTipoJogo=false;
+			}*/
+			else
+				System.out.println("Tipo de jogo invalido! Digite de novo");
+		}
+	}
     /*    Aqui o metodo pega a celula na qual queremos dar tiro e depois checa se acertamos
         um navio, se acertamos precisamos ver em qual foi. No final checa se ja afundamos
         todo os navios.
@@ -87,8 +109,8 @@ public class BatalhaNaval implements Imprimivel{
 		else 
 			tabuleiroAuxiliar=tabuleiro2;
 		if(tabuleiroAuxiliar.getNaviosAtivos()==0){
-			fimDeJogo=true;
-			System.out.println("\t\t-----Jogador " + (3-tabuleiro) + " ganhou!------");
+			setFimDeJogo(true);
+			//System.out.println("\t\t-----Jogador " + (3-tabuleiro) + " ganhou!------");
 		}
     }
     /*	Metodo para auxiliar na classe principal: ele vai nos dizer ate quando devemos ficar
@@ -122,5 +144,17 @@ public class BatalhaNaval implements Imprimivel{
         System.out.print("  ");
         imprimirAuxiliar();
     }
+	
+	public void setTabuleiro(int numTabuleiro,Tabuleiro tabuleiro){
+		if(numTabuleiro==1)
+			tabuleiro1=tabuleiro;
+		else
+			tabuleiro2=tabuleiro;
+	}
+	
+	public void setFimDeJogo(boolean fimDeJogo){
+		this.fimDeJogo=fimDeJogo;
+	}
+	
 }
 
