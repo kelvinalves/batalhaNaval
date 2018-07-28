@@ -8,21 +8,6 @@ public class Principal {
 		BatalhaNavalJogadores jogo = new BatalhaNavalJogadores();
 		
 		jogo.posicionaNaviosTabuleiros();
-		/*
-		while(true){
-			jogo.darTiro();
-			jogo.imprimir();
-			System.out.println();
-			if(jogo.checaFimDeJogo())
-				break;
-			jogo.darTiro();
-			jogo.imprimir();
-			System.out.println();
-			if(jogo.checaFimDeJogo())
-				break;
-		}
-		System.out.println("Fim de jogo!");
-		*/
 		int i=0;
 		while(!jogo.checaFimDeJogo()){ //Teste dos tiros
 			jogo.darTiro(1);

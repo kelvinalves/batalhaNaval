@@ -4,8 +4,10 @@ public class BatalhaNaval implements Imprimivel{
     private Tabuleiro tabuleiro1;
     private Tabuleiro tabuleiro2;
     private boolean fimDeJogo;
-    /*    Contrutor para criar os tabuleiros
-    */
+	/*
+	public static void jogar(){
+		System.out.prinln()
+	}*/
     public BatalhaNaval() {
         boolean continuaExcecao=true;
         Scanner leitor = new Scanner(System.in);
@@ -32,7 +34,7 @@ public class BatalhaNaval implements Imprimivel{
     public void posicionaNavios(Tabuleiro tabuleiro){
         boolean continuaExcecao;
         Scanner leitor=new Scanner(System.in);
-        System.out.println("Digite a linha, a coluna e a orientacao (H-horizotal e V-vertical)");
+        System.out.println("Digite a linha, a coluna e a orientacao (h-horizotal e v-vertical)");
         int linha;
         int coluna;
         char orientacao;
@@ -124,43 +126,5 @@ public class BatalhaNaval implements Imprimivel{
         System.out.print("  ");
         imprimirAuxiliar();
     }
-	/*
-	*/
-	
-	/*
-    @Override
-    public void imprimir(){
-        for(int i=0;i<tabuleiro2.tamanhoTabuleiro();i++){
-            for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");
-            for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++){
-                System.out.print("|");
-                tabuleiro1.getCelula(i,j).imprimir();
-            }
-            System.out.println("|");
-        }
-        for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");
-    }
-    @Override
-    public void imprimirAuxiliar(){
-        for(int i=0;i<tabuleiro1.tamanhoTabuleiro();i++){
-            for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");
-            for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++){
-                System.out.print("|");
-                tabuleiro1.getCelula(i,j).imprimirAuxiliar();
-            }
-            System.out.println("|");
-        }
-        for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");    
-    }
-	/*
-	*/
 }
 
