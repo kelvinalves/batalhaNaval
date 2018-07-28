@@ -19,7 +19,25 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
             }
         }
 	}
-	
+	@Override
+	public void jogar(){
+		posicionaNaviosTabuleiros();
+		while(true){
+			darTiro(1);
+			imprimir(1);
+			if(checaFimDeJogo()){
+				System.out.println("\t\t-----Jogador 1 ganhou!------");
+				break;
+			}
+			darTiro(2);
+			imprimir(2);
+			if(checaFimDeJogo()){
+				System.out.println("\t\t-----Jogador 2 ganhou!------");
+				break;
+			}
+		}
+	}
+		
 	public void posicionaNaviosTabuleiros(){
         System.out.println("\n\t-------Posicionamento de navios: jogador 1-------\n");
 		posicionaNavios(getTabuleiro(1));
