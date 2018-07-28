@@ -60,40 +60,31 @@ public class BatalhaNaval implements Imprimivel{
         }
     }    
     
-    public void darTiro(int linha, int coluna,int tabuleiro) throws Exception{
-        Tabuleiro tabuleiroAuxiliar;
+	public Tabuleiro escolherTabuleiro(int tabuleiro){
 		if(tabuleiro==1)
-			tabuleiroAuxiliar=tabuleiro1;
-		else
-			tabuleiroAuxiliar=tabuleiro2;
-
+			return tabuleiro1;
+		return tabuleiro2;
+	}
+	
+	public void darTiroNaCelula(int linha, int coluna, Tabuleiro tabuleiro)throws Exception{
+		Celula celula=tabuleiro.getCelula(linha-1,coluna-1);
+		if(celula.getTiro())
+			throw new Exception("\nJa foi dado tiro nessa celula!\n");
+		celula.setTiro();
+		if(celula.getConteudo().equals(" X "))
+			tabuleiro.atiraNoNavio(celula);
+	}
+	
+    public void darTiro(int linha, int coluna,int tabuleiro) throws Exception{
+        Tabuleiro tabuleiroAuxiliar=escolherTabuleiro(tabuleiro);
         if (coluna>tabuleiroAuxiliar.tamanhoTabuleiro() || linha>tabuleiroAuxiliar.tamanhoTabuleiro() || linha<1 || coluna<1){
 			throw new Exception ("Tiro fora do tabuleiro!");
 		}
-        Celula celulaAux=tabuleiroAuxiliar.getCelula(linha-1,coluna-1);
-
-        if (celulaAux.getTiro()){
-			throw new Exception("\nJa foi dado tiro nessa celula!\n");
-		}
-		celulaAux.setTiro();
-		if(celulaAux.getConteudo().equals(" X ")){
-			tabuleiroAuxiliar.atiraNoNavio(celulaAux);
-		}
-            /*
-        }
-        else {
-            Celula celulaAux=tabuleiro2.getCelula(linha-1,coluna-1);
-            if (celulaAux.getTiro()){
-                throw new Exception("Ja foi dado tiro nessa celula!");
-            }
-            celulaAux.setTiro();
-            if(celulaAux.getConteudo().equals(" X ")){
-                tabuleiro2.atiraNoNavio(celulaAux);
-            }
-        }*/
+        darTiroNaCelula(linha,coluna,tabuleiroAuxiliar);
         checaNumeroNavios(tabuleiro);
     }
-    /*    Ve se ja afundamos todos os navios ou nao
+	
+    /*	Ve se ja afundamos todos os navios ou nao
     */
     public void checaNumeroNavios(int tabuleiro){
         if(tabuleiro==1)
@@ -103,7 +94,7 @@ public class BatalhaNaval implements Imprimivel{
             if(tabuleiro2.getNaviosAtivos()==0)
                 fimDeJogo=true;
     }
-    /*    Metodo para auxiliar na classe principal: ele vai nos dizer ate quando devemos ficar
+    /*	Metodo para auxiliar na classe principal: ele vai nos dizer ate quando devemos ficar
         pedindo para que o usuario digite o tiro.
     */
     public boolean checaFimDeJogo(){

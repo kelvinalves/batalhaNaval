@@ -11,22 +11,33 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 	}	
 	/*	Agora esse imprimir so imprime as "divisorias horizontais" do tabuleiro
 	*/
+	/*
+	public int pedeCoordenada(){
+		Scanner leitor=new Scanner(System.in);
+		int coordenada=leitor.nextInt();
+		return coordenada;
+	}
+	*/
+	public int[] pedeCoordenadas(int jogador){
+		Scanner leitor=new Scanner(System.in);
+		int[] coordenadas=new int[2];
+		System.out.println("----Vez do Jogador " + jogador+ "----");
+		System.out.println("Onde quer dar o tiro? ");
+		coordenadas[0]=leitor.nextInt();
+		coordenadas[1]=leitor.nextInt();
+		return coordenadas;		
+	}
 	
 	public void darTiro(int jogador){
-		Scanner leitor=new Scanner(System.in);
 		boolean continuaAtirando=true;
-		int coluna;
-		int linha;
+		int[] coordenadas=new int[2];
 		while(continuaAtirando){
 			try{
-				System.out.println("----Vez do Jogador " + jogador+ "----");
-				System.out.println("Onde quer dar o tiro? ");
-				linha=leitor.nextInt();
-				coluna=leitor.nextInt();
+				coordenadas=pedeCoordenadas(jogador);
 				if(jogador==1)
-					darTiro(linha,coluna,2);
+					darTiro(coordenadas[0],coordenadas[1],2);
 				else
-					darTiro(linha,coluna,1);
+					darTiro(coordenadas[0],coordenadas[1],1);
 				continuaAtirando=false;
 			} catch (Exception e){
 				System.out.println(e.getMessage());
