@@ -17,7 +17,7 @@ public class Tabuleiro {
 		inicializaCelulas(tamanho);
 		inicializaNavios();
 	}
-	
+	/*
 	public Tabuleiro() throws Exception{
 		this(10);
 	}
@@ -74,8 +74,10 @@ public class Tabuleiro {
 		numero de navios ativos
 	*/
 	public void checaAfundou(Navio navio){
-		if(navio.checaAfundado())
+		if(navio.checaAfundado()){
 			naviosAtivos--;
+			System.out.println("Voce afundou um " + navio.getTipo()+"!");
+		}
 	}
 	/*	Ao darmos um tiro devemos saber qual navio atingimos. O metodo abaixo faz isso: procura a 
 		qual navio a celula passada como parametro pertence, de outra forma, vê se a celula do parametro

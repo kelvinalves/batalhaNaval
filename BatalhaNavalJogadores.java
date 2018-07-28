@@ -18,10 +18,20 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 		return coordenada;
 	}
 	*/
+	
+	public void posicionaNaviosTabuleiros(){
+        System.out.println("\n\t-------Posicionamento de navios: jogador 1-------\n");
+		posicionaNavios(getTabuleiro(1));
+		imprimir(1);
+		System.out.println("\n\t-------Posicionamento de navios: jogador 2-------\n");
+        posicionaNavios(getTabuleiro(2));
+		imprimir(2);
+    }
+	
 	public int[] pedeCoordenadas(int jogador){
 		Scanner leitor=new Scanner(System.in);
 		int[] coordenadas=new int[2];
-		System.out.println("----Vez do Jogador " + jogador+ "----");
+		System.out.println("\n\t\t----Vez do Jogador " + jogador+ "----\n");
 		System.out.println("Onde quer dar o tiro? ");
 		coordenadas[0]=leitor.nextInt();
 		coordenadas[1]=leitor.nextInt();
@@ -79,6 +89,7 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 	}*/	
 	
 	public void imprimir(int tabuleiro){
+		System.out.println("\t\t----------Tabuleiro " + tabuleiro +"----------\n");		
 		if(tabuleiro==1){
 			imprimirTabuleiro(getTabuleiro(1),getTabuleiro(2));
 			System.out.println();

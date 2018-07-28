@@ -5,18 +5,9 @@ public class Principal {
 		int linha;
 		int coluna;
 		boolean continuaAtirando=true;
-		
-		Scanner leitor = new Scanner(System.in);
 		BatalhaNavalJogadores jogo = new BatalhaNavalJogadores();
 		
 		jogo.posicionaNaviosTabuleiros();
-		System.out.println("\t\t\t----------tabuleiro 1----------\n");
-		jogo.imprimir();
-		System.out.println();
-		
-		System.out.println("\t\t\t----------tabuleiro 2----------\n");
-		jogo.imprimir();
-		System.out.println();
 		/*
 		while(true){
 			jogo.darTiro();
@@ -33,23 +24,11 @@ public class Principal {
 		System.out.println("Fim de jogo!");
 		*/
 		int i=0;
-		while(i<5){
-			continuaAtirando=true;
-			while(continuaAtirando){   //Teste dos tiros
-	
-				try{
-					System.out.println("Onde quer dar o tiro?");
-					linha = leitor.nextInt();
-					coluna = leitor.nextInt();
-		
-					jogo.darTiro(1);
-					continuaAtirando=false;
-					jogo.imprimir(1);
-					//jogo.imprimirAuxiliar();
-				} catch(Exception e) {
-					System.out.println(e.getMessage());
-				}
-			}
+		while(!jogo.checaFimDeJogo()){ //Teste dos tiros
+			jogo.darTiro(1);
+			jogo.imprimir(1);
+			jogo.darTiro(2);
+			jogo.imprimir(2);
 			i++;
 		}
 	}

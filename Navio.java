@@ -23,7 +23,7 @@ public class Navio {
     /*    Simplesmente ve se o navio foi afundado ou nao e retorna true ou false
     */
     public boolean checaAfundado(){
-        if(celulasAtivas==0)
+		if(celulasAtivas==0)
             return true;
         return false;
     }
@@ -86,5 +86,9 @@ public class Navio {
                 return true;
         return false;
     }
+	
+	public int getCelulasAtivas(){
+		return celulasAtivas;
+	}
 }
 
