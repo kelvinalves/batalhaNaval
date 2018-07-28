@@ -73,7 +73,6 @@ public class Tabuleiro {
 		navioAux.decrementaCelulasAtivas();
 		checaAfundou(navioAux);
 	}
-	
 	/*	Metodo para auxiliar na hora de dar um tiro: o metodo dar tiro ficara numa classe diferente
 		poir isso que temos que conseguir passar a celula para tal classe
 	*/
@@ -82,7 +81,6 @@ public class Tabuleiro {
 	}
 	/*	Retorna a quantidade de navios que ainda restam 
 	*/
-	
 	public Navio[] getNavios(){
 		return navios;
 	}	

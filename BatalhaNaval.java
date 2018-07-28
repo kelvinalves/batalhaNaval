@@ -30,7 +30,6 @@ public class BatalhaNaval implements Imprimivel{
         um navio, se acertamos precisamos ver em qual foi. No final checa se ja afundamos
         todo os navios.
     */
-    
     public void posicionaNavios(Tabuleiro tabuleiro){
         boolean continuaExcecao;
         Scanner leitor=new Scanner(System.in);
@@ -55,7 +54,6 @@ public class BatalhaNaval implements Imprimivel{
             }        
         }
     }    
-    
 	public Tabuleiro escolherTabuleiro(int tabuleiro){
 		if(tabuleiro==1)
 			return tabuleiro1;
@@ -92,7 +90,6 @@ public class BatalhaNaval implements Imprimivel{
 			fimDeJogo=true;
 			System.out.println("\t\t-----Jogador " + (3-tabuleiro) + " ganhou!------");
 		}
-	
     }
     /*	Metodo para auxiliar na classe principal: ele vai nos dizer ate quando devemos ficar
         pedindo para que o usuario digite o tiro.
@@ -105,7 +102,6 @@ public class BatalhaNaval implements Imprimivel{
     /*    Tem dois metodos pra imprimir pois precisamos de um tabuleiro auxiliar para
         marcar nossos tiros e o que ja afundamos
     */
-    
     public Tabuleiro getTabuleiro(int tabuleiro){
         if(tabuleiro==1)
             return tabuleiro1;

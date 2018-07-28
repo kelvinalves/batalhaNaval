@@ -78,6 +78,7 @@ public class Navio {
 		else
 			throw new Exception("\nOrientacao invalida!\n");
     }
+	
     /*    Esse metodo vai ver se a celula passada como parametro pertence a esse navio
         aqui. Isso auxilia na hora de dar um tiro numa celula e ver qual navio acertamos
     */

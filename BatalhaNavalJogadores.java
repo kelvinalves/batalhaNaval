@@ -20,6 +20,7 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 		return coordenadas;		
 	}
 	
+	
 	public void darTiro(int jogador){
 		boolean continuaAtirando=true;
 		int[] coordenadas=new int[2];
