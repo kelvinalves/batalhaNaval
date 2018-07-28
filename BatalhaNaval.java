@@ -11,7 +11,7 @@ public class BatalhaNaval implements Imprimivel{
         Scanner leitor = new Scanner(System.in);
         while (continuaExcecao){
             try{
-                System.out.print("Digite o tamanho do tabuleiro (entre 8 e 15, inclusive): ");
+                System.out.print("\nDigite o tamanho do tabuleiro (entre 8 e 15, inclusive): ");
                 int tamanho = leitor.nextInt();
                 tabuleiro1=new Tabuleiro(tamanho);
                 tabuleiro2=new Tabuleiro(tamanho);
@@ -29,16 +29,10 @@ public class BatalhaNaval implements Imprimivel{
         todo os navios.
     */
     
-    public void posicionaNaviosTabuleiros(){
-        posicionaNavios(tabuleiro1);
-        posicionaNavios(tabuleiro2);
-    }
-    
-    
     public void posicionaNavios(Tabuleiro tabuleiro){
         boolean continuaExcecao;
         Scanner leitor=new Scanner(System.in);
-        System.out.println("Hora de posicionar os Navios: digite a linha, a coluna e a orientacao (H-horizotal e V-vertical)");
+        System.out.println("Digite a linha, a coluna e a orientacao (H-horizotal e V-vertical)");
         int linha;
         int coluna;
         char orientacao;
@@ -87,12 +81,16 @@ public class BatalhaNaval implements Imprimivel{
     /*	Ve se ja afundamos todos os navios ou nao
     */
     public void checaNumeroNavios(int tabuleiro){
-        if(tabuleiro==1)
-            if(tabuleiro1.getNaviosAtivos()==0)
-                fimDeJogo=true;
-        else
-            if(tabuleiro2.getNaviosAtivos()==0)
-                fimDeJogo=true;
+        Tabuleiro tabuleiroAuxiliar;
+		if(tabuleiro==1)
+			tabuleiroAuxiliar=tabuleiro1;
+		else 
+			tabuleiroAuxiliar=tabuleiro2;
+		if(tabuleiroAuxiliar.getNaviosAtivos()==0){
+			fimDeJogo=true;
+			System.out.println("\t\t-----Jogador " + (3-tabuleiro) + " ganhou!------");
+		}
+	
     }
     /*	Metodo para auxiliar na classe principal: ele vai nos dizer ate quando devemos ficar
         pedindo para que o usuario digite o tiro.
