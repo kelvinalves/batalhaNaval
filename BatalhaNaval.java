@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class BatalhaNaval implements Imprimivel{
     private Tabuleiro tabuleiro1;
-    private Tabuleiro tabuleiro2;
+    protected Tabuleiro tabuleiro2;
     private boolean fimDeJogo;
 
     /*public BatalhaNaval() {
