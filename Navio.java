@@ -40,27 +40,27 @@ public class Navio {
     */
     public void posicionaNavio(int linha, int coluna, char orientacao, Tabuleiro tabuleiro) throws Exception{
         int tamanho=tabuleiro.tamanhoTabuleiro();
-		if(orientacao=='V'){
-            if (linha+celulasOcupadas.length-1>tamanho || coluna>tamanho || linha>tamanho || linha<1 || coluna<1){
+		if(coluna>tamanho || linha>tamanho || linha<1 || coluna<1)
+			throw new Exception ("Posicao fora do tabuleiro!");
+		
+		if(orientacao=='v'){
+            if (linha+celulasOcupadas.length-1>tamanho){
                 throw new Exception ("Posicao fora do tabuleiro!");
             }
-            for(int i=0;i<celulasAtivas;i++){
+			for(int i=0;i<celulasAtivas;i++){
                 Celula celulaAux=tabuleiro.getCelula(linha+i-1,coluna-1);
                 if (celulaAux.getConteudo().equals(" N ")){
                     throw new Exception("Posicao ja esta ocupada!");                 
-                }
-                
+                }  
             }
-            
             for(int i=0;i<celulasAtivas;i++){
                 Celula celulaAux=tabuleiro.getCelula(linha+i-1,coluna-1);
                 celulaAux.setConteudo(" N ");
                 celulasOcupadas[i]=celulaAux;
             }
         }
-
-        else{
-            if (coluna+celulasOcupadas.length-1>tamanho || coluna>tamanho || linha>tamanho || linha<1 || coluna<1){
+        else if(orientacao=='h'){
+            if (coluna+celulasOcupadas.length-1>tamanho){
                 throw new Exception ("Posicao fora do tabuleiro!");
             }
             for(int i=0;i<celulasAtivas;i++){
@@ -69,14 +69,16 @@ public class Navio {
                     throw new Exception("Posicao ja esta ocupada!");                 
                 }
             }
-            
             for(int i=0;i<celulasAtivas;i++){
                 Celula celulaAux=tabuleiro.getCelula(linha-1,coluna+i-1);
                 celulaAux.setConteudo(" N ");
                 celulasOcupadas[i]=celulaAux;
             }        
         }
+		else
+			throw new Exception("\nOrientacao invalida!\n");
     }
+	
     /*    Esse metodo vai ver se a celula passada como parametro pertence a esse navio
         aqui. Isso auxilia na hora de dar um tiro numa celula e ver qual navio acertamos
     */

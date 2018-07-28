@@ -42,34 +42,6 @@ public class Tabuleiro {
 		navios[i]=new PortaAviao();
 		naviosAtivos=10;
 	}
-	/*	O metodo abaixo auxilia o usuario e pede para que ele digite a linha, a coluna e a orientacao
-		dos navios. O metodo pede a posicao de cada navio do vetor de navios
-	*/
-	/*
-	public void posicionaNavios(){
-		boolean continuaExcecao;
-		Scanner leitor=new Scanner(System.in);
-		System.out.println("Hora de posicionar os Navios: digite a linha, a coluna e a orientacao (H-horizotal e V-vertical)");
-		int linha;
-		int coluna;
-		char orientacao;
-		for(int i=0;i<navios.length;i++){
-			continuaExcecao=true;
-			while (continuaExcecao)
-
-			try{
-				System.out.println("Posicione um " + navios[i].getTipo());
-				linha=leitor.nextInt();
-				coluna=leitor.nextInt();
-				orientacao=leitor.next().charAt(0);
-				navios[i].posicionaNavio(linha,coluna,orientacao,tabuleiro);
-				continuaExcecao = false;
-			} catch (Exception e) {
-				System.out.println(e.getMessage());	
-			}		
-		}
-	}
-	*/
 	/*	Metodo que pergunta se o navio passado como parametro foi afundado: se foi ele decrementa o 
 		numero de navios ativos
 	*/
@@ -101,7 +73,6 @@ public class Tabuleiro {
 		navioAux.decrementaCelulasAtivas();
 		checaAfundou(navioAux);
 	}
-	
 	/*	Metodo para auxiliar na hora de dar um tiro: o metodo dar tiro ficara numa classe diferente
 		poir isso que temos que conseguir passar a celula para tal classe
 	*/
@@ -110,7 +81,6 @@ public class Tabuleiro {
 	}
 	/*	Retorna a quantidade de navios que ainda restam 
 	*/
-	
 	public Navio[] getNavios(){
 		return navios;
 	}	

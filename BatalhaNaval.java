@@ -4,9 +4,8 @@ public class BatalhaNaval implements Imprimivel{
     private Tabuleiro tabuleiro1;
     private Tabuleiro tabuleiro2;
     private boolean fimDeJogo;
-    /*    Contrutor para criar os tabuleiros
-    */
-    public BatalhaNaval() {
+
+    /*public BatalhaNaval() {
         boolean continuaExcecao=true;
         Scanner leitor = new Scanner(System.in);
         while (continuaExcecao){
@@ -23,16 +22,40 @@ public class BatalhaNaval implements Imprimivel{
                 System.out.println(e.getMessage());
             }
         }
-    }
+    }*/
+	
+	public void jogar(){
+		Scanner leitor=new Scanner(System.in);
+		boolean pedeTipoJogo=true;
+		while(pedeTipoJogo){
+			System.out.println("\n-----------------------------------------");
+			System.out.println("\tEscolha o tipo de jogo");
+			System.out.println("\tj - Jogador vs Jogador");
+			System.out.println("\tc - Jogador vs computador");
+			System.out.println("-----------------------------------------");
+			char tipoJogo=leitor.next().charAt(0);
+			if(tipoJogo=='j'){
+				BatalhaNavalJogadores jogoJogadores=new BatalhaNavalJogadores();
+				jogoJogadores.jogar();
+				pedeTipoJogo=false;
+			}/*
+			else if(tipoJogo='c'){
+				BatalhaNavalComputador jogoComputador=new BatalhaNavalComputador();
+				//jogoJogadores.jogar();
+				pedeTipoJogo=false;
+			}*/
+			else
+				System.out.println("Tipo de jogo invalido! Digite de novo");
+		}
+	}
     /*    Aqui o metodo pega a celula na qual queremos dar tiro e depois checa se acertamos
         um navio, se acertamos precisamos ver em qual foi. No final checa se ja afundamos
         todo os navios.
     */
-    
     public void posicionaNavios(Tabuleiro tabuleiro){
         boolean continuaExcecao;
         Scanner leitor=new Scanner(System.in);
-        System.out.println("Digite a linha, a coluna e a orientacao (H-horizotal e V-vertical)");
+        System.out.println("Digite a linha, a coluna e a orientacao (h-horizotal e v-vertical)");
         int linha;
         int coluna;
         char orientacao;
@@ -53,7 +76,6 @@ public class BatalhaNaval implements Imprimivel{
             }        
         }
     }    
-    
 	public Tabuleiro escolherTabuleiro(int tabuleiro){
 		if(tabuleiro==1)
 			return tabuleiro1;
@@ -87,10 +109,9 @@ public class BatalhaNaval implements Imprimivel{
 		else 
 			tabuleiroAuxiliar=tabuleiro2;
 		if(tabuleiroAuxiliar.getNaviosAtivos()==0){
-			fimDeJogo=true;
-			System.out.println("\t\t-----Jogador " + (3-tabuleiro) + " ganhou!------");
+			setFimDeJogo(true);
+			//System.out.println("\t\t-----Jogador " + (3-tabuleiro) + " ganhou!------");
 		}
-	
     }
     /*	Metodo para auxiliar na classe principal: ele vai nos dizer ate quando devemos ficar
         pedindo para que o usuario digite o tiro.
@@ -103,7 +124,6 @@ public class BatalhaNaval implements Imprimivel{
     /*    Tem dois metodos pra imprimir pois precisamos de um tabuleiro auxiliar para
         marcar nossos tiros e o que ja afundamos
     */
-    
     public Tabuleiro getTabuleiro(int tabuleiro){
         if(tabuleiro==1)
             return tabuleiro1;
@@ -124,43 +144,17 @@ public class BatalhaNaval implements Imprimivel{
         System.out.print("  ");
         imprimirAuxiliar();
     }
-	/*
-	*/
 	
-	/*
-    @Override
-    public void imprimir(){
-        for(int i=0;i<tabuleiro2.tamanhoTabuleiro();i++){
-            for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");
-            for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++){
-                System.out.print("|");
-                tabuleiro1.getCelula(i,j).imprimir();
-            }
-            System.out.println("|");
-        }
-        for(int j=0;j<tabuleiro2.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");
-    }
-    @Override
-    public void imprimirAuxiliar(){
-        for(int i=0;i<tabuleiro1.tamanhoTabuleiro();i++){
-            for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");
-            for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++){
-                System.out.print("|");
-                tabuleiro1.getCelula(i,j).imprimirAuxiliar();
-            }
-            System.out.println("|");
-        }
-        for(int j=0;j<tabuleiro1.tamanhoTabuleiro();j++)
-                System.out.print("|---");
-            System.out.println("|");    
-    }
-	/*
-	*/
+	public void setTabuleiro(int numTabuleiro,Tabuleiro tabuleiro){
+		if(numTabuleiro==1)
+			tabuleiro1=tabuleiro;
+		else
+			tabuleiro2=tabuleiro;
+	}
+	
+	public void setFimDeJogo(boolean fimDeJogo){
+		this.fimDeJogo=fimDeJogo;
+	}
+	
 }
 

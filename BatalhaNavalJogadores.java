@@ -1,24 +1,43 @@
 import java.util.Scanner;
 public class BatalhaNavalJogadores extends BatalhaNaval{
-	/*public void posicionaNaviosTabuleiros(){
-		System.out.println("\n-------Posicionamento de navios: jogador 1-------\n");
-		Tabuleiro tabuleiroAuxiliar=getTabuleiro(1);
-		tabuleiroAuxiliar.posicionaNavios();
-		
-		System.out.println("\n-------Posicionamento de navios: jogador 2-------\n");
-		tabuleiroAuxiliar=getTabuleiro(2);
-		tabuleiroAuxiliar.posicionaNavios();
-	}	
-	/*	Agora esse imprimir so imprime as "divisorias horizontais" do tabuleiro
-	*/
-	/*
-	public int pedeCoordenada(){
-		Scanner leitor=new Scanner(System.in);
-		int coordenada=leitor.nextInt();
-		return coordenada;
-	}
-	*/
 	
+	public BatalhaNavalJogadores(){
+		boolean continuaExcecao=true;
+        Scanner leitor = new Scanner(System.in);
+        while (continuaExcecao){
+            try{
+                System.out.print("\nDigite o tamanho do tabuleiro (entre 8 e 15, inclusive): ");
+                int tamanho = leitor.nextInt();
+                setTabuleiro(1,new Tabuleiro(tamanho));
+                setTabuleiro(2,new Tabuleiro(tamanho));
+                setFimDeJogo(false);
+                continuaExcecao=false;
+            }
+        
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+	}
+	@Override
+	public void jogar(){
+		posicionaNaviosTabuleiros();
+		while(true){
+			darTiro(1);
+			imprimir(1);
+			if(checaFimDeJogo()){
+				System.out.println("\t\t-----Jogador 1 ganhou!------");
+				break;
+			}
+			darTiro(2);
+			imprimir(2);
+			if(checaFimDeJogo()){
+				System.out.println("\t\t-----Jogador 2 ganhou!------");
+				break;
+			}
+		}
+	}
+		
 	public void posicionaNaviosTabuleiros(){
         System.out.println("\n\t-------Posicionamento de navios: jogador 1-------\n");
 		posicionaNavios(getTabuleiro(1));
@@ -37,6 +56,7 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 		coordenadas[1]=leitor.nextInt();
 		return coordenadas;		
 	}
+	
 	
 	public void darTiro(int jogador){
 		boolean continuaAtirando=true;
@@ -73,32 +93,16 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 		imprimir();
 		System.out.println();
 	}
-	/*
-	public void imprimirTabuleiroAuxiliar(Tabuleiro tabuleiro){
-		for(int i=0;i<tabuleiro.tamanhoTabuleiro();i++){
-			imprimirAuxiliar();
-			System.out.println();
-			for(int j=0;j<tabuleiro.tamanhoTabuleiro();j++){
-				System.out.print("|");
-				tabuleiro.getCelula(i,j).imprimirAuxiliar();
-			}
-			System.out.println("|");
-		}
-		imprimirAuxiliar();
-		System.out.println();
-	}*/	
 	
 	public void imprimir(int tabuleiro){
 		System.out.println("\t\t----------Tabuleiro " + tabuleiro +"----------\n");		
 		if(tabuleiro==1){
 			imprimirTabuleiro(getTabuleiro(1),getTabuleiro(2));
 			System.out.println();
-			//imprimirTabuleiroAuxiliar(getTabuleiro(2),getTabuleiro(1));
 		}
 		else{
 			imprimirTabuleiro(getTabuleiro(2),getTabuleiro(1));
 			System.out.println();
-			//imprimirTabuleiroAuxiliar(getTabuleiro(1),getTabuleiro(2));
 		}
 	}
 }
