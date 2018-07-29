@@ -39,9 +39,9 @@ public class BatalhaNaval implements Imprimivel{
 				jogoJogadores.jogar();
 				pedeTipoJogo=false;
 			}/*
-			else if(tipoJogo='c'){
-				BatalhaNavalComputador jogoComputador=new BatalhaNavalComputador();
-				//jogoJogadores.jogar();
+			else if(tipoJogo=='c'){
+				BatalhaNavalComputador2 jogoComputador=new BatalhaNavalComputador2();
+				jogoComputador.jogar();
 				pedeTipoJogo=false;
 			}*/
 			else
@@ -63,17 +63,18 @@ public class BatalhaNaval implements Imprimivel{
 
         for(int i=0;i<naviosAuxiliar.length;i++){
             continuaExcecao=true;
-            while (continuaExcecao)
-            try{
-                System.out.println("Posicione um " + naviosAuxiliar[i].getTipo());
-                linha=leitor.nextInt();
-                coluna=leitor.nextInt();
-                orientacao=leitor.next().charAt(0);
-                naviosAuxiliar[i].posicionaNavio(linha,coluna,orientacao,tabuleiro);
-                continuaExcecao = false;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());    
-            }        
+            while (continuaExcecao){
+				try{
+					System.out.println("Posicione um " + naviosAuxiliar[i].getTipo());
+					linha=leitor.nextInt();
+					coluna=leitor.nextInt();
+					orientacao=leitor.next().charAt(0);
+					naviosAuxiliar[i].posicionaNavio(linha,coluna,orientacao,tabuleiro);
+					continuaExcecao = false;
+				} catch (Exception e) {
+					System.out.println(e.getMessage());    
+				}        
+			}
         }
     }    
 	public Tabuleiro escolherTabuleiro(int tabuleiro){
@@ -144,6 +145,37 @@ public class BatalhaNaval implements Imprimivel{
         System.out.print("  ");
         imprimirAuxiliar();
     }
+	
+	public void imprimir(int tabuleiro){
+		System.out.println("\t\t----------Tabuleiro " + tabuleiro +"----------\n");		
+		if(tabuleiro==1){
+			imprimirTabuleiro(tabuleiro1,tabuleiro2);
+			System.out.println();
+		}
+		else{
+			imprimirTabuleiro(tabuleiro2,tabuleiro1);
+			System.out.println();
+		}
+	}
+	
+	public void imprimirTabuleiro(Tabuleiro tabuleiro,Tabuleiro tabuleiroAuxiliar){
+		for(int i=0;i<tabuleiro.tamanhoTabuleiro();i++){
+			imprimir();
+			System.out.println();
+			for(int j=0;j<tabuleiro.tamanhoTabuleiro();j++){
+				System.out.print("|");
+				tabuleiro.getCelula(i,j).imprimir();
+			}
+			System.out.print("|  ");
+			for(int j=0;j<tabuleiroAuxiliar.tamanhoTabuleiro();j++){
+				System.out.print("|");
+				tabuleiroAuxiliar.getCelula(i,j).imprimirAuxiliar();
+			}
+			System.out.println("|");
+		}
+		imprimir();
+		System.out.println();
+	}
 	
 	public void setTabuleiro(int numTabuleiro,Tabuleiro tabuleiro){
 		if(numTabuleiro==1)

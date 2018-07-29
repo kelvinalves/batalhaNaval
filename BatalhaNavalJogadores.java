@@ -74,7 +74,7 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 			}
 		}
 	}
-	
+	/*
 	public void imprimirTabuleiro(Tabuleiro tabuleiro,Tabuleiro tabuleiroAuxiliar){
 		for(int i=0;i<tabuleiro.tamanhoTabuleiro();i++){
 			imprimir();
@@ -105,4 +105,5 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 			System.out.println();
 		}
 	}
+	*/
 }
