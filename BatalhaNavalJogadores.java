@@ -40,13 +40,15 @@ public class BatalhaNavalJogadores extends BatalhaNaval{
 		
 	public void posicionaNaviosTabuleiros(){
         System.out.println("\n\t-------Posicionamento de navios: jogador 1-------\n");
-		posicionaNavios(getTabuleiro(1));
+		posicionaNavios(getTabuleiro(1),1);
+		System.out.println("\nSeu tabuleiro ficou como segue\n");
 		imprimir(1);
 		System.out.println("\n\t-------Posicionamento de navios: jogador 2-------\n");
-        posicionaNavios(getTabuleiro(2));
+        posicionaNavios(getTabuleiro(2),2);
+		System.out.println("\nSeu tabuleiro ficou como segue\n");
 		imprimir(2);
     }
-	
+	/*
 	public int[] pedeCoordenadas(int jogador){
 		Scanner leitor=new Scanner(System.in);
 		int[] coordenadas=new int[2];

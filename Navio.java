@@ -4,9 +4,10 @@ public class Navio {
     private String tipoNavio;
     private Celula[] celulasOcupadas;
     private int celulasAtivas;
-    
-    public Navio(String tipoNavio, int numeroCelulasOcupadas) {
-        inicializaNavio(tipoNavio,numeroCelulasOcupadas);
+    private String simbolo;
+	
+    public Navio(String tipoNavio, int numeroCelulasOcupadas, String simbolo) {
+        inicializaNavio(tipoNavio,numeroCelulasOcupadas, simbolo);
     }
     //metodo para diminuir o numero de celulas que ainda podem receber tiro
     public void decrementaCelulasAtivas(){
@@ -15,10 +16,11 @@ public class Navio {
     /*    Metodo para criar de fato o navio: coloca seu tipo e
         talvez deixar esse metodo private seja mais interessante
     */
-    public void inicializaNavio(String tipoNavio, int numeroCeluasOcupadas) {
+    public void inicializaNavio(String tipoNavio, int numeroCeluasOcupadas, String simbolo) {
         this.tipoNavio=tipoNavio;
         celulasOcupadas=new Celula[numeroCeluasOcupadas];
         celulasAtivas=numeroCeluasOcupadas;
+		this.simbolo=simbolo;
     }
     /*    Simplesmente ve se o navio foi afundado ou nao e retorna true ou false
     */
@@ -49,13 +51,13 @@ public class Navio {
             }
 			for(int i=0;i<celulasAtivas;i++){
                 Celula celulaAux=tabuleiro.getCelula(linha+i-1,coluna-1);
-                if (celulaAux.getConteudo().equals(" N ")){
+                if (!celulaAux.getConteudo().equals("~~~")){
                     throw new Exception("Posicao ja esta ocupada!");                 
                 }  
             }
             for(int i=0;i<celulasAtivas;i++){
                 Celula celulaAux=tabuleiro.getCelula(linha+i-1,coluna-1);
-                celulaAux.setConteudo(" N ");
+                celulaAux.setConteudo(simbolo);
                 celulasOcupadas[i]=celulaAux;
             }
         }
@@ -65,13 +67,13 @@ public class Navio {
             }
             for(int i=0;i<celulasAtivas;i++){
                 Celula celulaAux=tabuleiro.getCelula(linha-1,coluna+i-1);
-                if (celulaAux.getConteudo().equals(" N ")){
+                if (!celulaAux.getConteudo().equals("~~~")){
                     throw new Exception("Posicao ja esta ocupada!");                 
                 }
             }
             for(int i=0;i<celulasAtivas;i++){
                 Celula celulaAux=tabuleiro.getCelula(linha-1,coluna+i-1);
-                celulaAux.setConteudo(" N ");
+                celulaAux.setConteudo(simbolo);
                 celulasOcupadas[i]=celulaAux;
             }        
         }
@@ -91,6 +93,10 @@ public class Navio {
 	
 	public int getCelulasAtivas(){
 		return celulasAtivas;
+	}
+	
+	public int tamanhoNavio(){
+		return celulasOcupadas.length;
 	}
 }
 
