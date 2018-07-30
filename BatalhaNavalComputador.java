@@ -1,54 +1,56 @@
 import java.util.Random;
 
 public class BatalhaNavalComputador extends BatalhaNaval {
-	private int sorteio, tamanho;
+	private int sorteio, tamanho, linha, coluna;
 	private char orientacao;
-	private String celulaAnterior;
+	private String celulaAnterior = "~~~";
 
-	public int aleatorio(){
-		//instancia um objeto da classe Random usando o construtor básico
-		Random gerador = new Random();
-
-		this.tamanho = getTabuleiro(1).tamanhoTabuleiro();
-
-		//sequência entre 0 e tamanho + 1
-
-		this.sorteio = gerador.nextInt(tamanho);
-
-		return sorteio;
+	public int aleatorio() {
+    Random gerador = new Random();
+    tamanho = getTabuleiro(1).tamanhoTabuleiro();
+    sorteio = gerador.nextInt(tamanho);
+    return sorteio;
 	}
-	public char orientacao(){
-
-		if (aleatorio() < ((tamanho)/2))
+	public char orientacao() {
+    if (aleatorio() < ((tamanho)/2))
 			orientacao = 'H';
 		else
 			orientacao = 'V';
 		return orientacao;
 	}
 	@Override
-	public void darTiroNaCelula(int coluna, int linha, Tabuleiro tabuleiro) throws Exception{
+	public void darTiroNaCelula(int linha, int coluna, Tabuleiro tabuleiro) {
+		Celula celula=tabuleiro.getCelula(linha,coluna);
+		if(celula.getTiro())
+		  celula.setTiro();
 		if(celula.getConteudo().equals(" X "))
+			tabuleiro.atiraNoNavio(celula);
 			celulaAnterior = " X ";
 	}
-	public void tipoTiro(Celula celulaAnterior){
-		/*if(celulaAnterior.getConteudo().equals(" X "))
-			darTiroInteligente();
-		else*/
-			darTiroNaCelula(aleatorio(), aleatorio(), tabuleiro2);
-
+	public void tipoTiro(){
+		if(celulaAnterior == " X ")
+			darTiroInteligente(linha, coluna);
+		else {
+      this.linha = aleatorio();
+      this.coluna = aleatorio();
+      darTiroNaCelula(linha, coluna, tabuleiro2);
+    }
 	}
-	/*
-	public class darTiroInteligente(){
-		itens = new Object[3]; // as quatro posições da cruz
-		for(int i = 0; i<=3; i++){
-
-			itens[i] =
-
+	public void darTiroInteligente(int linha, int coluna) {
+    int a = aleatorio();
+    if (a < tamanho/4)
+		  darTiroNaCelula(linha-1, coluna, tabuleiro2);
+		else if (a < tamanho/2)
+			darTiroNaCelula(linha+1, coluna, tabuleiro2);
+    else if (a >= tamanho/2)
+			darTiroNaCelula(linha, coluna-1, tabuleiro2);
+    else
+			darTiroNaCelula(linha, coluna+1, tabuleiro2);
 	}
-
+  /*
 	@Override
-	public void posicionaNavio(aleatorioIndice(), aleatorioIndice(), orientacao, Celula[][] tabuleiro)
+	public void posicionaNavio(aleatorioIndice(), aleatorioIndice(), orientacao, Celula[][] tabuleiro) {
 
-	}*/
+  }*/
 }
 
