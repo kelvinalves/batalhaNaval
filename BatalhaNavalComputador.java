@@ -48,10 +48,21 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 		else
 			darTiroNaCelula(linha, coluna+1, tabuleiro2);
 	}
-  /*
 	@Override
-	public void posicionaNavio(aleatorioIndice(), aleatorioIndice(), orientacao, Celula[][] tabuleiro) {
-
-  }*/
+	public void posicionaNavios(Tabuleiro tabuleiro, int numTabuleiro){
+		boolean continuaExcecao;
+		Navio[] naviosAuxiliar=tabuleiro.getNavios();
+		for(int i=0;i<naviosAuxiliar.length;i++){
+			continuaExcecao=true;
+			while (continuaExcecao){
+				try{
+					naviosAuxiliar[i].posicionaNavio(aleatorio(), aleatorio(), orientacao(), tabuleiro2);
+					continuaExcecao = false;
+				} 
+				catch (Exception e)
+					posicionaNavios(tabuleiro2, 2);
+			}
+		}
+	}
 }
 
