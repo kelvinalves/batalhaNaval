@@ -5,6 +5,7 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 	private int sorteio, tamanho, linha, coluna;
 	private char orientacao;
 	private String celulaAnterior = "~~~";
+	private int sequencia=5;
 
 	public BatalhaNavalComputador(){
 		criaTabuleiros();
@@ -21,6 +22,7 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 				break;
 			}
 			tipoTiro();
+			imprimir(2);
 			if(checaFimDeJogo()){
 				System.out.println("\t\t-----Computador ganhou! Mais sorte da proxima vez!------");
 				break;
@@ -50,43 +52,64 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 			tabuleiro.atiraNoNavio(celula);
 			celulaAnterior = " X ";
 		}
-		else
-			celulaAnterior = "~~~";
+		else {
+			if(sequencia==0){
+				celulaAnterior = "~~~";
+				sequencia=5;
+			}
+		}
 	}
 	public void tipoTiro(){
 		if(celulaAnterior == " X ")
 			darTiroInteligente(linha, coluna);
 		else{
 			try{
-				this.linha = aleatorio();
-				this.coluna = aleatorio();
-				darTiroNaCelula(linha, coluna, getTabuleiro(1));
+				darTiroAleatorio();
 			}
 			catch (Exception e){
 				tipoTiro();
 			}
 		}
 	}
+
+	public void darTiroAleatorio() throws Exception{ 
+		this.linha = aleatorio();
+		this.coluna = aleatorio();
+		darTiroNaCelula(linha, coluna, getTabuleiro(1));
+	}	
+	
 	public void darTiroInteligente(int linha, int coluna){ 
-		int a = aleatorio();
-		try{
-			if (a < tamanho/4){
-				darTiroNaCelula(linha-1, coluna, getTabuleiro(1));
+		boolean continuaExcecao=true;
+		while(continuaExcecao){		
+			try{
+				sequencia--;
+				if (sequencia == 4){
+					darTiroNaCelula(linha-1, coluna, getTabuleiro(1));
+					sequencia--;
+				}
+				else if (sequencia == 3){
+					darTiroNaCelula(linha+1, coluna, getTabuleiro(1));
+					sequencia--;
+				}
+				else if (sequencia == 2){
+					darTiroNaCelula(linha, coluna-1, getTabuleiro(1));
+					sequencia--;
+				}
+				else if (sequencia == 1){
+					darTiroNaCelula(linha, coluna+1, getTabuleiro(1));
+					sequencia--;
+				}
+				else {
+					darTiroAleatorio();
+				}
+				continuaExcecao=false;
 			}
-			else if (a < tamanho/2){
-				darTiroNaCelula(linha+1, coluna, getTabuleiro(1));
+			catch(Exception e){
+				
 			}
-			else if (a < 3*tamanho/4){
-				darTiroNaCelula(linha, coluna-1, getTabuleiro(1));
-			}
-			else{
-				darTiroNaCelula(linha, coluna+1, getTabuleiro(1));
-			}
-		}
-		catch(Exception e){
-			darTiroInteligente(linha, coluna);
 		}
 	}
+
 	public void posicionaNaviosTabuleiros(){
 		System.out.println("\n\t-------Posicionamento de navios: jogador 1-------\n");
 		posicionaNavios(getTabuleiro(1),1);
