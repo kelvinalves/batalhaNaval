@@ -13,6 +13,8 @@ public class Tabuleiro {
 		if (tamanho<8 || tamanho >15){
 			throw new Exception("\nTamanho do tabuleiro deve ser de 8 ate 15!\n");
 		}
+		if((Object)tamanho == null)
+			throw new Exception("Digite um inteiro");
 		tabuleiro=new Celula[tamanho][tamanho];
 		inicializaCelulas(tamanho);
 		inicializaNavios();

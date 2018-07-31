@@ -2,22 +2,7 @@ import java.util.Scanner;
 public class BatalhaNavalJogadores extends BatalhaNaval{
 	
 	public BatalhaNavalJogadores(){
-		boolean continuaExcecao=true;
-        Scanner leitor = new Scanner(System.in);
-        while (continuaExcecao){
-            try{
-                System.out.print("\nDigite o tamanho do tabuleiro (entre 8 e 15, inclusive): ");
-                int tamanho = leitor.nextInt();
-                setTabuleiro(1,new Tabuleiro(tamanho));
-                setTabuleiro(2,new Tabuleiro(tamanho));
-                setFimDeJogo(false);
-                continuaExcecao=false;
-            }
-        
-            catch (Exception e){
-                System.out.println(e.getMessage());
-            }
-        }
+		criaTabuleiros();
 	}
 	@Override
 	public void jogar(){

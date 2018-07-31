@@ -7,22 +7,9 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 	private String celulaAnterior = "~~~";
 
 	public BatalhaNavalComputador(){
-		boolean continuaExcecao=true;
-        	Scanner leitor = new Scanner(System.in);
-        	while (continuaExcecao){
-			try{
-				System.out.print("\nDigite o tamanho do tabuleiro (entre 8 e 15, inclusive): ");
-				int tamanho = leitor.nextInt();
-				setTabuleiro(1,new Tabuleiro(tamanho));
-				setTabuleiro(2,new Tabuleiro(tamanho));
-				setFimDeJogo(false);
-				continuaExcecao=false;
-			}
-			catch (Exception e){
-				System.out.println(e.getMessage());
-			}
-		}
+		criaTabuleiros();
 	}
+
 	@Override
 	public void jogar(){
 		posicionaNaviosTabuleiros();
@@ -30,12 +17,12 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 			darTiro(1);
 			imprimir(1);
 			if(checaFimDeJogo()){
-				System.out.println("\t\t-----Não fez mais do que a sua obrigação------");
+				System.out.println("\t\t-----Parabens! Voce ganhou!------");
 				break;
 			}
 			tipoTiro();
 			if(checaFimDeJogo()){
-				System.out.println("\t\t-----Você é fraco!------");
+				System.out.println("\t\t-----Computador ganhou! Mais sorte da proxima vez!------");
 				break;
 			}
 		}
@@ -73,24 +60,28 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 			try{
 				this.linha = aleatorio();
 				this.coluna = aleatorio();
-				darTiroNaCelula(linha, coluna, tabuleiro1);
+				darTiroNaCelula(linha, coluna, getTabuleiro(1));
 			}
 			catch (Exception e){
 				tipoTiro();
 			}
 		}
 	}
-	public void darTiroInteligente(int linha, int coluna){
+	public void darTiroInteligente(int linha, int coluna){ 
 		int a = aleatorio();
 		try{
 			if (a < tamanho/4){
-				darTiroNaCelula(linha-1, coluna, tabuleiro1);}
+				darTiroNaCelula(linha-1, coluna, getTabuleiro(1));
+			}
 			else if (a < tamanho/2){
-				darTiroNaCelula(linha+1, coluna, tabuleiro1);}
-			else if (a < 3*tamanho/2){
-				darTiroNaCelula(linha, coluna-1, tabuleiro1);}
+				darTiroNaCelula(linha+1, coluna, getTabuleiro(1));
+			}
+			else if (a < 3*tamanho/4){
+				darTiroNaCelula(linha, coluna-1, getTabuleiro(1));
+			}
 			else{
-				darTiroNaCelula(linha, coluna+1, tabuleiro1);}
+				darTiroNaCelula(linha, coluna+1, getTabuleiro(1));
+			}
 		}
 		catch(Exception e){
 			darTiroInteligente(linha, coluna);
@@ -102,7 +93,7 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 		System.out.println("\nSeu tabuleiro ficou como segue\n");
 		imprimir(1);
 		posicionaNavios();
-		imprimir(2);
+		//imprimir(2);
 	}
 	public void posicionaNavios(){
 		boolean continuaExcecao;
