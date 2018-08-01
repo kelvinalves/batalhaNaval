@@ -5,7 +5,7 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 	private int sorteio, tamanho, linha, coluna;
 	private char orientacao;
 	private String celulaAnterior = "~~~";
-	private int sequencia=5;
+	private int sequencia=4;
 
 	public BatalhaNavalComputador(){
 		criaTabuleiros();
@@ -15,14 +15,15 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 	public void jogar(){
 		posicionaNaviosTabuleiros();
 		while(true){
+			System.out.println("an "+celulaAnterior);
 			darTiro(1);
+			System.out.println("dep "+celulaAnterior);
 			imprimir(1);
 			if(checaFimDeJogo()){
 				System.out.println("\t\t-----Parabens! Voce ganhou!------");
 				break;
 			}
 			tipoTiro();
-			imprimir(2);
 			if(checaFimDeJogo()){
 				System.out.println("\t\t-----Computador ganhou! Mais sorte da proxima vez!------");
 				break;
@@ -42,28 +43,41 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 			orientacao = 'v';
 		return orientacao;
 	}
-	@Override
-	public void darTiroNaCelula(int linha, int coluna, Tabuleiro tabuleiro)throws Exception{
-		Celula celula=tabuleiro.getCelula(linha-1, coluna-1);
+	
+	public void darTiroNaCelula(int linha, int coluna)throws Exception{
+		Tabuleiro tabuleiroAux=getTabuleiro(1);
+		if (coluna>=tabuleiroAux.tamanhoTabuleiro() || linha>=tabuleiroAux.tamanhoTabuleiro() || linha<0 || coluna<0){
+			throw new Exception ("Tiro fora do tabuleiro!");
+		}
+		Celula celula=tabuleiroAux.getCelula(linha-1, coluna-1);
 		if(celula.getTiro())
 			throw new Exception("\nJa foi dado tiro nessa celula!\n");
 		celula.setTiro();
 		if(celula.getConteudo().equals(" X ")){
-			tabuleiro.atiraNoNavio(celula);
+			tabuleiroAux.atiraNoNavio(celula);
+			sequencia=4;
+			this.linha=linha;
+			this.coluna=coluna;
 			celulaAnterior = " X ";
 		}
-		else {
-			if(sequencia==0){
-				celulaAnterior = "~~~";
-				sequencia=5;
-			}
+		else if(sequencia==0){
+			celulaAnterior = "~~~";
+			sequencia=4;
 		}
 	}
-	public void tipoTiro(){
-		if(celulaAnterior == " X ")
+	public void tipoTiro(){	
+		if(celulaAnterior.equals(" X ")){
+			System.out.println(sequencia+ "");
+			System.out.println(celulaAnterior);			
+			System.out.println("inteligente");			
 			darTiroInteligente(linha, coluna);
+			
+		}
 		else{
 			try{
+				System.out.println(sequencia + "");
+				System.out.println(celulaAnterior);
+				System.out.println("aleatorio");
 				darTiroAleatorio();
 			}
 			catch (Exception e){
@@ -72,44 +86,50 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 		}
 	}
 
-	public void darTiroAleatorio() throws Exception{ 
-		this.linha = aleatorio();
-		this.coluna = aleatorio();
-		darTiroNaCelula(linha, coluna, getTabuleiro(1));
+	public void darTiroAleatorio(){ 			
+		try {	
+			this.linha = aleatorio();
+			this.coluna = aleatorio();
+			darTiroNaCelula(linha, coluna);
+		} catch (Exception e) {
+			darTiroAleatorio();
+		}
 	}	
 	
 	public void darTiroInteligente(int linha, int coluna){ 
+		System.out.println(sequencia+ "");
 		boolean continuaExcecao=true;
 		while(continuaExcecao){		
 			try{
-				sequencia--;
 				if (sequencia == 4){
-					darTiroNaCelula(linha-1, coluna, getTabuleiro(1));
 					sequencia--;
+					darTiroNaCelula(this.linha-1,this.coluna);
 				}
 				else if (sequencia == 3){
-					darTiroNaCelula(linha+1, coluna, getTabuleiro(1));
 					sequencia--;
+					darTiroNaCelula(this.linha+1, this.coluna);
 				}
 				else if (sequencia == 2){
-					darTiroNaCelula(linha, coluna-1, getTabuleiro(1));
 					sequencia--;
+					darTiroNaCelula(this.linha, this.coluna-1);
 				}
 				else if (sequencia == 1){
-					darTiroNaCelula(linha, coluna+1, getTabuleiro(1));
 					sequencia--;
+					darTiroNaCelula(this.linha, this.coluna+1);
 				}
-				else {
-					darTiroAleatorio();
-				}
-				continuaExcecao=false;
+				continuaExcecao=false;	
 			}
 			catch(Exception e){
-				
+				if(sequencia==0){
+					sequencia=4;
+					celulaAnterior= "~~~";
+					continuaExcecao=false;
+					darTiroAleatorio();
+				}
 			}
 		}
 	}
-
+	
 	public void posicionaNaviosTabuleiros(){
 		System.out.println("\n\t-------Posicionamento de navios: jogador 1-------\n");
 		posicionaNavios(getTabuleiro(1),1);

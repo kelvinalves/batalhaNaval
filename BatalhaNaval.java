@@ -37,21 +37,20 @@ public class BatalhaNaval implements Imprimivel{
         int coluna;
         char orientacao;
         Navio[] naviosAuxiliar=tabuleiro.getNavios();
-		Scanner leitor=new Scanner(System.in);
         for(int i=0;i<naviosAuxiliar.length;i++){
             continuaExcecao=true;
 			
             while (continuaExcecao){
 				try{
 					System.out.println("Posicione um " + naviosAuxiliar[i].getTipo()+ ", que tem tamanho " + naviosAuxiliar[i].tamanhoNavio()+"\n");
-					//Scanner leitor=new Scanner(System.in);
-					//try {					
+					Scanner leitor=new Scanner(System.in);
+					try {					
 						linha=leitor.nextInt();
 						coluna=leitor.nextInt();
-					//} catch (Exception e) {
-					//	System.out.println("\nDigite numeros para a posicao!");
-					//	continue;
-					//}	
+					} catch (Exception e) {
+						System.out.println("\nDigite numeros para a posicao!\n");
+						continue;
+					}	
 					orientacao=leitor.next().charAt(0);
 					naviosAuxiliar[i].posicionaNavio(linha,coluna,orientacao,tabuleiro);
 					continuaExcecao = false;
@@ -135,12 +134,20 @@ public class BatalhaNaval implements Imprimivel{
     }
     
 	public int[] pedeCoordenadas(int jogador){
-		Scanner leitor=new Scanner(System.in);
+		boolean pede=true;
 		int[] coordenadas=new int[2];
 		System.out.println("\n\t\t----Vez do Jogador " + jogador+ "----\n");
-		System.out.println("Onde quer dar o tiro? ");
-		coordenadas[0]=leitor.nextInt();
-		coordenadas[1]=leitor.nextInt();
+		while(pede){
+			try{
+				Scanner leitor=new Scanner(System.in);
+				System.out.println("Onde quer dar o tiro? ");
+				coordenadas[0]=leitor.nextInt();
+				coordenadas[1]=leitor.nextInt();
+				pede=false;
+			} catch (Exception e){
+				System.out.println("\nDigite numeros\n");
+			}
+		}
 		return coordenadas;		
 	}
 
@@ -190,7 +197,7 @@ public class BatalhaNaval implements Imprimivel{
 	}
 	
 	public void imprimirTabuleiro(Tabuleiro tabuleiro,Tabuleiro tabuleiroAuxiliar){
-		//indicesSuperiores(tabuleiro.tamanhoTabuleiro());		
+		indicesSuperiores(tabuleiro.tamanhoTabuleiro());		
 		for(int i=0;i<tabuleiro.tamanhoTabuleiro();i++){
 			imprimir();
 			System.out.println();
@@ -235,10 +242,6 @@ public class BatalhaNaval implements Imprimivel{
 		this.fimDeJogo=fimDeJogo;
 	}
 	
-	public int scannerInt(){
-		Scanner leitor=new Scanner(System.in);	
-		return leitor.nextInt();
-	}
 	
 }
 

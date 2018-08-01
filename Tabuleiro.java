@@ -50,7 +50,7 @@ public class Tabuleiro {
 	public void checaAfundou(Navio navio){
 		if(navio.checaAfundado()){
 			naviosAtivos--;
-			System.out.println("Voce afundou um " + navio.getTipo()+"!");
+			System.out.println("Foi afundado um " + navio.getTipo()+"!");
 		}
 	}
 	/*	Ao darmos um tiro devemos saber qual navio atingimos. O metodo abaixo faz isso: procura a 
