@@ -15,9 +15,7 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 	public void jogar(){
 		posicionaNaviosTabuleiros();
 		while(true){
-			System.out.println("an "+celulaAnterior);
 			darTiro(1);
-			System.out.println("dep "+celulaAnterior);
 			imprimir(1);
 			if(checaFimDeJogo()){
 				System.out.println("\t\t-----Parabens! Voce ganhou!------");
@@ -67,17 +65,10 @@ public class BatalhaNavalComputador extends BatalhaNaval {
 	}
 	public void tipoTiro(){	
 		if(celulaAnterior.equals(" X ")){
-			System.out.println(sequencia+ "");
-			System.out.println(celulaAnterior);			
-			System.out.println("inteligente");			
 			darTiroInteligente(linha, coluna);
-			
 		}
 		else{
 			try{
-				System.out.println(sequencia + "");
-				System.out.println(celulaAnterior);
-				System.out.println("aleatorio");
 				darTiroAleatorio();
 			}
 			catch (Exception e){
